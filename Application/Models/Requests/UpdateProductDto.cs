@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Products;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Application.Models.Requests
 {
@@ -9,9 +10,9 @@ namespace Application.Models.Requests
         [Required(ErrorMessage = "Name field is required")]
         [StringLength(20, MinimumLength = 3)]
         public string? Name { get; set; }
-
+        [JsonIgnore]
         [Required(ErrorMessage = "Description field is required")]
-        [StringLength(20, MinimumLength = 3)]
+        [StringLength(100, MinimumLength = 3)]
         public string? Description { get; set; }
 
         [Required(ErrorMessage = "Price field is required")]

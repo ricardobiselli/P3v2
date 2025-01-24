@@ -24,5 +24,13 @@ namespace Infrastructure.Data.Repositories
                 .Where(o => o.ClientId == clientId)
                 .ToList();
         }
+        public List<Order> GetAllOrdersWithDetails()
+        {
+            return _context.Orders
+                .Include(o => o.OrderDetails)
+                    .ThenInclude(od => od.Product)
+                .ToList();
+        }
+
     }
 }

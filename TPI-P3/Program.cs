@@ -105,15 +105,18 @@ builder.Services.AddAuthorization();
 builder.Services.Configure<CustomAuthenticationService.AuthenticationServiceOptions>(
     builder.Configuration.GetSection("AuthenticationService"));
 
-//builder.Services.AddCors(options =>
-//{
-//    options.AddDefaultPolicy(builder =>
-//    {
-//        builder.WithOrigins("http://localhost:5173")
-//               .AllowAnyHeader()
-//               .AllowAnyMethod();
-//    });
-//});
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        //builder.WithOrigins("http://localhost:5173")
+        //       .AllowAnyHeader()
+        //       .AllowAnyMethod();
+        builder.AllowAnyOrigin()  // Más permisivo que WithOrigins
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -129,9 +132,10 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 
+app.UseCors();
 app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.UseCors();
 app.Run();

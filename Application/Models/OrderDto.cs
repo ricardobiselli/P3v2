@@ -4,11 +4,11 @@ namespace Application.Models
 {
     public class OrderDTO
     {
-        [JsonIgnore]
+        //[JsonIgnore]
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public int ClientId { get; set; }
         public List<OrderDetailDTO> OrderDetails { get; set; }
 
@@ -20,7 +20,7 @@ namespace Application.Models
                 TotalAmount = order.TotalAmount,
                 ClientId = order.ClientId,
                 OrderDate = order.OrderDate,
-                OrderDetails = order.OrderDetails.Select(OrderDetailDTO.Create).ToList()
+                OrderDetails = order.OrderDetails?.Select(OrderDetailDTO.Create).ToList() ?? new List<OrderDetailDTO>()
             };
         }
     }

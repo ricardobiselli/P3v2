@@ -30,6 +30,20 @@ namespace Application.Services
             return cart;
         }
 
+        //public ShoppingCart GetCartByClientId(int userId)
+        //{
+        //    // ERROR SIMULADO
+        //    ShoppingCart cart = null;
+
+        //    if (cart == null)
+        //    {
+        //        throw new NotFoundException("cart not found. FROM DOTNET");
+        //    }
+
+        //    return cart;
+        //}
+
+
         public bool AddProductToCart(int userId, AddOrRemoveProductToCartDto addProductToCartDto)
         {
             try

@@ -10,6 +10,11 @@ namespace Application.Interfaces
         public List<Product> GetAll();
         public Product GetById(int id);
         public void Delete(int id);
+        public List<string> GetUniqueCategories();
+        public List<Product> GetProductsByCategory(string category);
+
+
+
     }
 }
 

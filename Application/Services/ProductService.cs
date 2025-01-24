@@ -42,6 +42,7 @@ namespace Application.Services
 
         public Product UpdateProduct(UpdateProductDto productDto)
         {
+            Console.WriteLine("DTO recibiddo: ", productDto);
             var productToUpdate = _productRepository.GetById(productDto.Id);
 
             if (productToUpdate == null)
@@ -65,6 +66,12 @@ namespace Application.Services
             var products = _productRepository.GetAll();
             return products ?? new List<Product>();
         }
+
+        //public List<Product> GetAll()
+        //{
+        //    throw new NotFoundException($"probando si llega este mensaje al front");
+
+        //}
 
         public Product GetById(int id)
         {
@@ -90,6 +97,17 @@ namespace Application.Services
 
             _productRepository.Update(product);
         }
+        public  List<string> GetUniqueCategories()
+        {
+            return  _productRepository.GetUniqueCategories();
+        }
+
+        public List<Product> GetProductsByCategory(string category)
+        {
+            return _productRepository.GetProductsByCategory(category);
+        }
+
+
     }
 }
 

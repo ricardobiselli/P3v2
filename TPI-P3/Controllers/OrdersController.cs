@@ -108,5 +108,26 @@ namespace Api.Controllers
             _orderService.Delete(id);
             return NoContent();
         }
+        [HttpGet("Get-All-Orders-For-Admins")]
+        public ActionResult<List<OrderDTO>> GetAllOrdersForAdmin()
+        {
+            if (!IsAdminOrSuperAdmin())
+            {
+                return Forbid();
+            }
+
+            var orders = _orderService.GetAllOrders();
+            var listOfOrders = orders
+                .Select(OrderDTO.Create)
+                .ToList();
+
+            if (!listOfOrders.Any())
+            {
+                return NotFound(new { message = "No Orders found" });
+            }
+
+            return Ok(listOfOrders);
+        }
+
     }
 }

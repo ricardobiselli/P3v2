@@ -24,17 +24,22 @@ namespace Application.Services
         public Order PlaceAnOrderFromCartContent(int userId)
         {
 
+
+            //throw new ValidateException("ESTO ES UN ERROR SIMULADO  EN DOTNET!!!");
+
+
+
             var shoppingCart = _shoppingCartRepository.GetCartByClientId(userId);
             if (shoppingCart.ShoppingCartProducts.Count == 0)
             {
-                throw new ValidateException("The shopping cart is empty!");
+                throw new ValidateException("The shopping cart is empty! FROM DOTNET");
             }
 
             decimal totalAmount = shoppingCart.ShoppingCartProducts
                 .Sum(product => product.Quantity * product.Product.Price);
 
             var order = new Order(totalAmount, userId, shoppingCart.ShoppingCartId);
-           
+
             foreach (var cartProduct in shoppingCart.ShoppingCartProducts)
             {
                 var product = _productRepository.GetById(cartProduct.ProductId);
@@ -103,6 +108,10 @@ namespace Application.Services
             {
                 throw new NotFoundException($"Error deleting order {id}", ex);
             }
+        }
+        public List<Order> GetAllOrders()
+        {
+            return _orderRepository.GetAllOrdersWithDetails();  // Usamos el nuevo método que trae todas las órdenes
         }
     }
 }

@@ -39,6 +39,20 @@ namespace TPI_P3.Controllers
             return Ok(productDtos);
         }
 
+        [HttpGet("Get-All-By-Category")]
+        [AllowAnonymous]
+
+        public IActionResult GetProductsByCategory([FromQuery] string? category = null)
+        {
+            var products = string.IsNullOrEmpty(category)
+                ? _productService.GetAll()
+                : _productService.GetProductsByCategory(category);
+
+            return Ok(products);
+        }
+
+
+
         [HttpGet("Get-One/{id}")]
         [AllowAnonymous]
         public ActionResult<ProductDto> GetById(int id)
@@ -66,10 +80,13 @@ namespace TPI_P3.Controllers
         [HttpPut("Update-Product")]
         public ActionResult Update(UpdateProductDto productDto)
         {
+            Console.WriteLine("Producto recibido para actualización:", productDto);
+
             if (!IsAdminOrSuperAdmin())
             {
                 return Forbid();
             }
+
 
             else
             {
@@ -90,6 +107,13 @@ namespace TPI_P3.Controllers
             _productService.Delete(id);
             return NoContent();
 
+        }
+        [AllowAnonymous]
+        [HttpGet("categories")]
+        public  ActionResult GetCategories()
+        {
+            var categories =  _productService.GetUniqueCategories();
+            return Ok(categories);
         }
 
     }

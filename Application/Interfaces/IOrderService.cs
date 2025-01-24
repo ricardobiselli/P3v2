@@ -10,6 +10,8 @@ namespace Application.Interfaces
         public List<Order> GetAll();
         public Order GetById(int id);
         public void Delete(int id);
+        public List<Order> GetAllOrders();
+
 
 
     }

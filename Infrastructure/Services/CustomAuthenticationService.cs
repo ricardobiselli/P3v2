@@ -36,15 +36,15 @@ namespace Infrastructure.Services
             var claimsForToken = new List<Claim>
             {
                 new Claim("sub", user.Id.ToString()),
-                //new Claim("userName", user.UserName),
+                new Claim("userName", user.UserName),
                 new Claim(ClaimTypes.Role, user.UserType)
             };
 
-            //if (user is Client client)
-            //{
-            //    claimsForToken.Add(new Claim("firstName", client.FirstName));
-            //    claimsForToken.Add(new Claim("lastName", client.LastName));
-            //}
+            if (user is Client client)
+            {
+                claimsForToken.Add(new Claim("firstName", client.FirstName));
+                claimsForToken.Add(new Claim("lastName", client.LastName));
+            }
 
             var jwtSecurityToken = new JwtSecurityToken(
                 _options.Issuer,
