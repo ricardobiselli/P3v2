@@ -111,7 +111,7 @@ namespace Application.Services
         }
         public List<Order> GetAllOrders()
         {
-            return _orderRepository.GetAllOrdersWithDetails();  // Usamos el nuevo método que trae todas las órdenes
+            return _orderRepository.GetAllOrdersWithDetails();  
         }
     }
 }

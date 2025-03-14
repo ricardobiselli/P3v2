@@ -13,6 +13,7 @@ namespace Domain.Models.Products
         public int StockQuantity { get; set; }
         public string? Category { get; set; }
         public decimal PowerConsumption { get; set; }
+        public List<string> Compatibilities { get; set; }
         public EntitiesState State { get; set; } = EntitiesState.Active;
         public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<ShoppingCartProduct> ShoppingCartProducts { get; set; }
@@ -26,6 +27,7 @@ namespace Domain.Models.Products
             Price = price;
             StockQuantity = stock;
             PowerConsumption = power;
+            Compatibilities = new List<string>();
             OrderDetails = new List<OrderDetail>();
             ShoppingCartProducts = new List<ShoppingCartProduct>();
             State = EntitiesState.Active;

@@ -59,10 +59,10 @@ namespace Api.Controllers
         [HttpGet("Get-One/{id}")]
         public ActionResult<ClientDTO> GetById([FromRoute] int id)
         {
-            if (!IsAdminOrSuperAdmin())
-            {
-                return Forbid();
-            }
+                //if (!IsAdminOrSuperAdmin())
+                //{
+                //    return Forbid();
+                //}
 
             var client = _clientService.GetById(id);
             var clientDto = ClientDTO.Create(client);
@@ -72,10 +72,10 @@ namespace Api.Controllers
         [HttpDelete("Delete/{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
-            if (!IsAdminOrSuperAdmin())
-            {
-                return Forbid();
-            }
+            //if (!IsAdminOrSuperAdmin())
+            //{
+            //    return Forbid();
+            //}
 
             var client = _clientService.GetById(id);
             _clientService.Delete(id);
@@ -85,13 +85,13 @@ namespace Api.Controllers
         [HttpPut("Update")]
         public ActionResult Update([FromBody] ClientUpdateDto clientDto)
         {
-            if (!IsAdminOrSuperAdmin())
-            {
-                return Forbid();
-            }
+            //if (!IsAdminOrSuperAdmin())
+            //{
+            //    return Forbid();
+            //}
 
             _clientService.UpdateClient(clientDto);
-            return NoContent();
+            return NoContent();         
         }
 
     }

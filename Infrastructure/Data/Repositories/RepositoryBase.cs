@@ -20,7 +20,7 @@ namespace Infrastructure.Data.Repositories
         {
             return  _context.Set<T>().Find([id]);
         }
-
+                
         public  T Add(T entity) 
 
         {
@@ -39,7 +39,7 @@ namespace Infrastructure.Data.Repositories
         public   int Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
-            return  _context.SaveChanges();
+            return  _context.SaveChanges    ();
 
         }
 

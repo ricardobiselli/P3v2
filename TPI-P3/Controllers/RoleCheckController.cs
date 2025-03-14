@@ -51,5 +51,17 @@ namespace TPI_P3.Controllers
                 return false;
             }
         }
+
+        protected bool IsOperator()
+        {
+            if (User.IsInRole("operator"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

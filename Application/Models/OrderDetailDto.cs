@@ -6,7 +6,7 @@ namespace Application.Models
 
     public class OrderDetailDTO
     {
-        [JsonIgnore]
+        //[JsonIgnore]
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }

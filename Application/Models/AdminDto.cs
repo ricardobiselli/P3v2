@@ -8,7 +8,7 @@ namespace Application.Models
         public int Id { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public string Password { get; set; }
 
         public static ShowAdminDto Create(Admin admin)
@@ -19,7 +19,7 @@ namespace Application.Models
                 UserName = admin.UserName,
                 Email = admin.Email,
                 Password = admin.Password
-
+                    
             };
         }
     }

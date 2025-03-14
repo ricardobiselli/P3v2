@@ -17,7 +17,7 @@ namespace Application.Models.Requests
         [Required(ErrorMessage = "DNI number is required")]
         public string? DniNumber { get; set; }
 
-        [Required(ErrorMessage = "Address  is required")]
+        [Required(ErrorMessage = "Address  is required")]   
         [StringLength(30, MinimumLength = 3, ErrorMessage = "Address must be between 3 and 20 characters.")]
         public string? Address { get; set; }
 
